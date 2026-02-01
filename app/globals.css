@@ -1,26 +1,58 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Background */
+  --background: rgba(16, 16, 18, 0.98);
+  --background-glass: rgba(20, 20, 24, 0.4);
+  --background-glass-hover: rgba(30, 30, 36, 0.5);
+
+  /* Foreground */
+  --foreground: #e7e7e7;
+  --foreground-secondary: rgba(255, 255, 255, 0.8);
+  --foreground-muted: rgba(255, 255, 255, 0.6);
+
+  /* Secondary */
+  --secondary: rgba(255, 255, 255, 0.05);
+
+  /* Accent */
+  --accent: #4fd1c5;
+
+  /* Muted */
+  --muted: rgba(255, 255, 255, 0.3);
+  --muted-background: rgba(255, 255, 255, 0.03);
+
+  /* Borders */
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.12);
+  --border-focus: rgba(107, 91, 149, 0.25);
+
+  /* Shadows */
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5);
+
+  /* Glass highlights */
+  --glass-highlight: rgba(255, 255, 255, 0.05);
+  --glass-highlight-hover: rgba(255, 255, 255, 0.08);
 }
 
-@theme inline {
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-muted-background: var(--muted-background);
+  --color-border-hover: var(--border-hover);
+  --color-border-focus: var(--border-focus);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-glass-highlight: var(--glass-highlight);
+  --color-glass-highlight-hover: var(--glass-highlight-hover);
 }
 
 body {
   background: var(--background);
+
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
