@@ -1,22 +1,20 @@
 import Image from "next/image";
-import { Star, Calendar, Clock, Play } from "lucide-react";
-import { WatchlistButton } from "@/feature/watchlist/components/watchlist-button";
+import { Star, Calendar, Clock, Play, Link } from "lucide-react";
+import { WatchlistButton } from "@/features/watchlist/components/watchlist-button";
 import type { TMDBMovieDetail, TMDBTVDetail, Video } from "../types/tmdb";
+import { getBackdropUrl } from "@/features/discovery/utils/tmdb-helpers";
 
 interface HeroSectionProps {
   details: TMDBMovieDetail | TMDBTVDetail;
   trailer?: Video;
 }
 
-const getBackdropUrl = (path: string | null) => {
-  if (!path) return "/placeholder-backdrop.jpg";
-  return `https://image.tmdb.org/t/p/original${path}`;
-};
-
 export const HeroSection = ({ details, trailer }: HeroSectionProps) => {
   const title = "title" in details ? details.title : details.name;
+
   const releaseDate =
     "release_date" in details ? details.release_date : details.first_air_date;
+
   const runtime =
     "runtime" in details
       ? details.runtime
@@ -76,15 +74,14 @@ export const HeroSection = ({ details, trailer }: HeroSectionProps) => {
 
         <div className="flex items-center gap-4 mt-6">
           {trailer && (
-            <a
+            <Link
               href={`https://www.youtube.com/watch?v=${trailer.key}`}
               target="_blank"
-              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white transition-all"
             >
               <Play className="w-5 h-5" />
               Watch Trailer
-            </a>
+            </Link>
           )}
 
           <WatchlistButton

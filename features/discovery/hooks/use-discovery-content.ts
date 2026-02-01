@@ -21,9 +21,13 @@ export const useDiscoveryContent = ({
   selectedMediaType = "all",
 }: UseDiscoveryContentProps = {}) => {
   const [content, setContent] = useState<ContentItem[]>([]);
+
   const [page, setPage] = useState(1);
+
   const [hasMore, setHasMore] = useState(true);
+
   const [isLoading, setIsLoading] = useState(false);
+
   const debouncedSearchQuery = useDebounce(searchQuery, 500);
 
   const fetchContent = useCallback(

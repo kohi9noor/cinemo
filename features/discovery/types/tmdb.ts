@@ -35,6 +35,7 @@ export interface TMDBResponse<T> {
   total_results: number;
 }
 
+export type MediaType = "movie" | "tv" | "all";
 export interface ContentItem {
   id: number;
   title: string;

@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
-import AuthModel from "@/feature/auth/components/auth-model";
-import OnboardingModal from "@/feature/auth/components/onboarding-modal";
+import AuthModel from "@/features/auth/components/auth-model";
+import OnboardingModal from "@/features/auth/components/onboarding-modal";
 import { Header } from "@/components/main/header";
 import DebugLogout from "@/components/debug/debug-logout";
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { User } from "@supabase/supabase-js";
-import { WatchlistGrid } from "@/feature/watchlist/components/watchlist-grid";
+import { WatchlistGrid } from "@/features/watchlist/components/watchlist-grid";
 
 interface ProfileSectionProps {
   user: User;

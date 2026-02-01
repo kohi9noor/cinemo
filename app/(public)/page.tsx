@@ -1,4 +1,4 @@
-import { DiscoverySection } from "@/feature/discovery/components";
+import { DiscoverySection } from "@/features/discovery/components";
 
 const Home = () => {
   return (

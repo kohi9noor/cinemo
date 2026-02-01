@@ -19,16 +19,12 @@ export async function addToWatchlist(params: AddToWatchlistParams) {
   try {
     const supabase = await createClient();
     const {
-      data: { session },
-      error: sessionError,
-    } = await supabase.auth.getSession();
-    console.log("Session:", session);
-    console.log("Session Error:", sessionError);
-    console.log("Authenticated user:", session?.user);
-    if (!session?.user) {
+      data: { user },
+      error: userError,
+    } = await supabase.auth.getUser();
+    if (!user) {
       return err(new Error("User not authenticated"));
     }
-    const user = session.user;
 
     const existing = await db
       .select()
@@ -73,13 +69,12 @@ export async function removeFromWatchlist(
   try {
     const supabase = await createClient();
     const {
-      data: { session },
-    } = await supabase.auth.getSession();
+      data: { user },
+    } = await supabase.auth.getUser();
 
-    if (!session?.user) {
+    if (!user) {
       return err(new Error("User not authenticated"));
     }
-    const user = session.user;
 
     await db
       .delete(watchlist)
@@ -108,13 +103,12 @@ export async function checkInWatchlist(
   try {
     const supabase = await createClient();
     const {
-      data: { session },
-    } = await supabase.auth.getSession();
+      data: { user },
+    } = await supabase.auth.getUser();
 
-    if (!session?.user) {
+    if (!user) {
       return ok(false);
     }
-    const user = session.user;
 
     const items = await db
       .select()
@@ -141,13 +135,12 @@ export async function getUserWatchlist() {
   try {
     const supabase = await createClient();
     const {
-      data: { session },
-    } = await supabase.auth.getSession();
+      data: { user },
+    } = await supabase.auth.getUser();
 
-    if (!session?.user) {
+    if (!user) {
       return err(new Error("User not authenticated"));
     }
-    const user = session.user;
 
     const items = await db
       .select()

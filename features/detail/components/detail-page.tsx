@@ -6,6 +6,7 @@ import { PosterCard } from "./poster-card";
 import { InfoCard } from "./info-card";
 import { OverviewSection } from "./overview-section";
 import { CastGrid } from "./cast-grid";
+import LazyLoader from "@/components/ui/lazy-loader";
 
 interface DetailPageProps {
   id: number;
@@ -19,11 +20,7 @@ export const DetailPage = ({ id, mediaType }: DetailPageProps) => {
   );
 
   if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="w-12 h-12 border-4 border-white/20 border-t-white/80 rounded-full animate-spin" />
-      </div>
-    );
+    return <LazyLoader />;
   }
 
   if (!details) {
@@ -37,6 +34,7 @@ export const DetailPage = ({ id, mediaType }: DetailPageProps) => {
   const trailer = videos.find(
     (v) => v.type === "Trailer" && v.site === "YouTube",
   );
+
   const director = credits?.crew.find((c) => c.job === "Director");
   const topCast = credits?.cast.slice(0, 10) || [];
 

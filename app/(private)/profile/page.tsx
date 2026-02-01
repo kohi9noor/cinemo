@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import { ProfileSection } from "@/feature/profile/components/profile-section";
+import { ProfileSection } from "@/features/profile/components/profile-section";
 
 export default async function ProfilePage() {
   const supabase = await createClient();

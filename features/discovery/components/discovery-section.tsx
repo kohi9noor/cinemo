@@ -6,13 +6,17 @@ import { ContentGrid } from "./content-grid";
 import { SearchBar } from "./search-bar";
 import { FiltersPanel } from "./filters-panel";
 import { useDiscoveryContent } from "../hooks/use-discovery-content";
-import type { ContentItem } from "../types/tmdb";
+import type { ContentItem, MediaType } from "../types/tmdb";
 
 export const DiscoverySection = () => {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
+
   const [selectedGenre, setSelectedGenre] = useState<number | null>(null);
-  const [selectedMediaType, setSelectedMediaType] = useState("all");
+
+  const [selectedMediaType, setSelectedMediaType] = useState<
+    "all" | "movie" | "tv"
+  >("all");
 
   const { content, isLoading, hasMore } = useDiscoveryContent({
     searchQuery,
@@ -26,6 +30,10 @@ export const DiscoverySection = () => {
 
   const handleClearSearch = () => {
     setSearchQuery("");
+  };
+
+  const handleMediaTypeChange = (type: MediaType) => {
+    setSelectedMediaType(type);
   };
 
   return (
@@ -42,7 +50,7 @@ export const DiscoverySection = () => {
           selectedGenre={selectedGenre}
           selectedMediaType={selectedMediaType}
           onGenreChange={setSelectedGenre}
-          onMediaTypeChange={setSelectedMediaType}
+          onMediaTypeChange={handleMediaTypeChange}
         />
       </div>
 

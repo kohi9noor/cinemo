@@ -30,16 +30,21 @@ export const useWatchlist = ({
   const [isChecking, setIsChecking] = useState(true);
 
   useEffect(() => {
+    let mounted = true;
+
     const checkStatus = async () => {
-      setIsChecking(true);
       const result = await checkInWatchlist(contentId, mediaType);
-      if (result.data !== null) {
+      if (mounted && result.data !== null) {
         setIsInWatchlist(result.data);
+        setIsChecking(false);
       }
-      setIsChecking(false);
     };
 
     checkStatus();
+
+    return () => {
+      mounted = false;
+    };
   }, [contentId, mediaType]);
 
   const toggleWatchlist = async () => {

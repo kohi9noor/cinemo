@@ -2,6 +2,7 @@
 
 import { Filter, Check } from "lucide-react";
 import { useState } from "react";
+import { MediaType } from "@/features/discovery/types/tmdb";
 
 export const GENRES = [
   { id: 28, name: "Action" },
@@ -21,7 +22,7 @@ export const GENRES = [
   { id: 53, name: "Thriller" },
 ];
 
-const MEDIA_TYPES = [
+const MEDIA_TYPES: { id: MediaType; name: string }[] = [
   { id: "all", name: "All" },
   { id: "movie", name: "Movies" },
   { id: "tv", name: "TV Shows" },
@@ -29,9 +30,9 @@ const MEDIA_TYPES = [
 
 interface FiltersPanelProps {
   selectedGenre: number | null;
-  selectedMediaType: string;
+  selectedMediaType: MediaType;
   onGenreChange: (genreId: number | null) => void;
-  onMediaTypeChange: (type: string) => void;
+  onMediaTypeChange: (type: MediaType) => void;
 }
 
 export const FiltersPanel = ({
