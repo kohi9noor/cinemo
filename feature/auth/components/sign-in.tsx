@@ -7,24 +7,42 @@ import { Button } from "./button";
 import { SocialButtons } from "./social-buttons";
 import { FormDivider } from "./form-divider";
 import { supabase } from "@/lib/supabase";
+import { toast } from "sonner";
 
 interface SignInCardProps {
   onSwitchToSignup?: () => void;
+  onSuccess?: () => void;
 }
 
-const SignInCard = ({ onSwitchToSignup }: SignInCardProps) => {
+const SignInCard = ({ onSwitchToSignup, onSuccess }: SignInCardProps) => {
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    supabase.auth.signInWithPassword({
-      email: formData.email,
-      password: formData.password,
-    });
+    setIsLoading(true);
+
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: formData.email,
+        password: formData.password,
+      });
+
+      if (error) {
+        toast.error(error.message);
+      } else if (data.session) {
+        toast.success("Signed in successfully");
+        onSuccess?.();
+      }
+    } catch {
+      toast.error("Something went wrong");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -81,8 +99,8 @@ const SignInCard = ({ onSwitchToSignup }: SignInCardProps) => {
           </button>
         </div>
 
-        <Button variant="primary" fullWidth type="submit">
-          Sign In
+        <Button variant="primary" fullWidth type="submit" disabled={isLoading}>
+          {isLoading ? "Signing in..." : "Sign In"}
         </Button>
       </form>
 

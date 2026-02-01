@@ -8,13 +8,16 @@ import useScrollTrigger from "../hooks/use-scroll-trigger";
 
 const AuthModel = () => {
   const [view, setView] = useState<"signin" | "signup">("signin");
-  const { showModel } = useScrollTrigger();
+  const { showModel, hideModel } = useScrollTrigger();
 
   return (
     showModel && (
       <AuthCardLayout>
         {view === "signin" ? (
-          <SignInCard onSwitchToSignup={() => setView("signup")} />
+          <SignInCard
+            onSwitchToSignup={() => setView("signup")}
+            onSuccess={hideModel}
+          />
         ) : (
           <SignupCard onSwitchToSignin={() => setView("signin")} />
         )}
