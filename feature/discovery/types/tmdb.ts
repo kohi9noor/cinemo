@@ -8,6 +8,7 @@ export interface TMDBMovie {
   vote_average: number;
   vote_count: number;
   genre_ids: number[];
+  popularity: number;
   media_type?: "movie";
 }
 
@@ -21,6 +22,7 @@ export interface TMDBTVShow {
   vote_average: number;
   vote_count: number;
   genre_ids: number[];
+  popularity: number;
   media_type?: "tv";
 }
 
