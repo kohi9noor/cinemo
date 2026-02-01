@@ -9,7 +9,7 @@ export default async function ProfilePage() {
   } = await supabase.auth.getSession();
 
   if (!session) {
-    redirect("/");
+    redirect("/auth?redirect=/profile");
   }
 
   return (

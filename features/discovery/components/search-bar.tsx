@@ -16,11 +16,11 @@ export const SearchBar = ({ value, onChange, onClear }: SearchBarProps) => {
     <div
       className={`relative flex items-center gap-2 px-4 py-3 bg-white/5 border rounded-lg transition-all ${
         isFocused
-          ? "border-white/30 bg-white/10"
-          : "border-white/10 hover:border-white/20"
+          ? "border-hover bg-background-card"
+          : "border-default hover:border-hover"
       }`}
     >
-      <Search className="w-5 h-5 text-white/40" />
+      <Search className="w-5 h-5 text-muted" />
       <input
         type="text"
         value={value}
@@ -28,12 +28,12 @@ export const SearchBar = ({ value, onChange, onClear }: SearchBarProps) => {
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         placeholder="Search movies, TV shows..."
-        className="flex-1 bg-transparent text-white placeholder:text-white/40 outline-none text-sm"
+        className="flex-1 bg-transparent text-primary placeholder:text-muted outline-none text-sm"
       />
       {value && (
         <button
           onClick={onClear}
-          className="text-white/40 hover:text-white/70 transition-colors"
+          className="text-muted hover:text-secondary transition-colors"
         >
           <X className="w-4 h-4" />
         </button>

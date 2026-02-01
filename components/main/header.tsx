@@ -13,7 +13,7 @@ export const Header = () => {
     <header className="sticky top-0 z-40 w-full backdrop-blur-md ">
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
         <div>
-          <h1 className="text-lg font-semibold text-white">Cinemo</h1>
+          <h1 className="text-lg font-semibold text-primary">Cinemo</h1>
         </div>
 
         {isLoading ? (
@@ -25,6 +25,7 @@ export const Header = () => {
               avatarUrl={profile.avatarUrl}
               initials={profile.initials}
               fullName={profile.fullName}
+              email={profile.email}
               onClick={() => router.push("/profile")}
             />
           )

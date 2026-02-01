@@ -47,12 +47,12 @@ export const FiltersPanel = ({
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-4 py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-lg text-white text-sm transition-all"
+        className="flex items-center gap-2 px-4 py-3 bg-background-card hover:bg-background-glass border border-default hover:border-hover rounded-lg text-primary text-sm transition-all"
       >
         <Filter className="w-4 h-4" />
         Filters
         {(selectedGenre || selectedMediaType !== "all") && (
-          <span className="w-2 h-2 bg-white rounded-full" />
+          <span className="w-2 h-2 bg-accent rounded-full" />
         )}
       </button>
 
@@ -62,10 +62,12 @@ export const FiltersPanel = ({
             className="fixed inset-0 z-10"
             onClick={() => setIsOpen(false)}
           />
-          <div className="absolute top-full right-0 mt-2 w-80 max-h-[70vh] overflow-y-auto bg-black/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-xl z-20">
+          <div className="absolute top-full right-0 mt-2 w-80 max-h-[70vh] overflow-y-auto bg-background-glass backdrop-blur-xl border border-default rounded-lg shadow-xl z-20">
             <div className="p-4 space-y-6">
               <div>
-                <h3 className="text-white text-sm font-semibold mb-3">Type</h3>
+                <h3 className="text-primary text-sm font-semibold mb-3">
+                  Type
+                </h3>
                 <div className="flex gap-2">
                   {MEDIA_TYPES.map((type) => (
                     <button
@@ -73,8 +75,8 @@ export const FiltersPanel = ({
                       onClick={() => onMediaTypeChange(type.id)}
                       className={`flex-1 px-3 py-2 rounded-lg text-xs transition-all border ${
                         selectedMediaType === type.id
-                          ? "bg-white/20 border-white/40 text-white"
-                          : "bg-white/5 border-white/10 text-white/70 hover:bg-white/10"
+                          ? "bg-accent/20 border-accent text-primary font-medium"
+                          : "bg-muted-background border-default text-secondary hover:bg-background-card"
                       }`}
                     >
                       {type.name}
@@ -85,11 +87,11 @@ export const FiltersPanel = ({
 
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-white text-sm font-semibold">Genres</h3>
+                  <h3 className="text-primary text-sm font-semibold">Genres</h3>
                   {selectedGenre && (
                     <button
                       onClick={() => onGenreChange(null)}
-                      className="text-white/50 hover:text-white text-xs"
+                      className="text-muted hover:text-primary text-xs"
                     >
                       Clear
                     </button>
@@ -106,8 +108,8 @@ export const FiltersPanel = ({
                         }
                         className={`flex items-center gap-2 px-3 py-2 rounded-lg text-xs transition-all border ${
                           isSelected
-                            ? "bg-white/20 border-white/40 text-white"
-                            : "bg-white/5 border-white/10 text-white/70 hover:bg-white/10"
+                            ? "bg-accent/20 border-accent text-primary font-medium"
+                            : "bg-muted-background border-default text-secondary hover:bg-background-card"
                         }`}
                       >
                         {isSelected && <Check className="w-3 h-3" />}

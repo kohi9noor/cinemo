@@ -15,11 +15,11 @@ export const CastGrid = ({ cast }: CastGridProps) => {
 
   return (
     <div>
-      <h2 className="text-2xl font-semibold text-white mb-4">Cast</h2>
+      <h2 className="text-2xl font-semibold text-primary mb-4">Cast</h2>
       <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
         {cast.map((member) => (
           <div key={member.id} className="space-y-2">
-            <div className="aspect-square relative rounded-lg overflow-hidden bg-white/5 border border-white/10">
+            <div className="aspect-square relative rounded-lg overflow-hidden bg-card border border-default">
               <Image
                 src={getProfileUrl(member.profile_path)}
                 alt={member.name}
@@ -28,8 +28,8 @@ export const CastGrid = ({ cast }: CastGridProps) => {
               />
             </div>
             <div>
-              <p className="text-white text-sm font-medium">{member.name}</p>
-              <p className="text-white/50 text-xs">{member.character}</p>
+              <p className="text-primary text-sm font-medium">{member.name}</p>
+              <p className="text-muted text-xs">{member.character}</p>
             </div>
           </div>
         ))}

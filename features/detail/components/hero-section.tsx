@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Star, Calendar, Clock, Play, Link } from "lucide-react";
+import { Star, Calendar, Clock, Play } from "lucide-react";
 import { WatchlistButton } from "@/features/watchlist/components/watchlist-button";
 import type { TMDBMovieDetail, TMDBTVDetail, Video } from "../types/tmdb";
 import { getBackdropUrl } from "@/features/discovery/utils/tmdb-helpers";
@@ -19,7 +19,6 @@ export const HeroSection = ({ details, trailer }: HeroSectionProps) => {
     "runtime" in details
       ? details.runtime
       : details.episode_run_time[0] || null;
-
   return (
     <div className="relative h-[60vh] w-full">
       <Image
@@ -29,16 +28,18 @@ export const HeroSection = ({ details, trailer }: HeroSectionProps) => {
         className="object-cover"
         priority
       />
-      <div className="absolute inset-0 bg-linear-to-t from-black via-black/60 to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-t from-background via-background/80 to-transparent" />
 
       <div className="absolute bottom-0 left-0 right-0 p-8 max-w-7xl mx-auto">
-        <h1 className="text-5xl font-bold text-white mb-4">{title}</h1>
+        <h1 className="text-5xl font-bold text-primary mb-4">{title}</h1>
 
         {details.tagline && (
-          <p className="text-white/70 text-lg italic mb-4">{details.tagline}</p>
+          <p className="text-secondary text-lg italic mb-4">
+            {details.tagline}
+          </p>
         )}
 
-        <div className="flex items-center gap-6 text-sm text-white/80">
+        <div className="flex items-center gap-6 text-sm text-secondary">
           <div className="flex items-center gap-2">
             <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
             <span className="font-semibold">
@@ -64,7 +65,7 @@ export const HeroSection = ({ details, trailer }: HeroSectionProps) => {
             {details.genres.map((genre) => (
               <span
                 key={genre.id}
-                className="px-3 py-1 bg-white/10 rounded-full text-xs"
+                className="px-3 py-1 bg-background-card border border-default rounded-full text-xs"
               >
                 {genre.name}
               </span>
@@ -74,14 +75,15 @@ export const HeroSection = ({ details, trailer }: HeroSectionProps) => {
 
         <div className="flex items-center gap-4 mt-6">
           {trailer && (
-            <Link
+            <a
               href={`https://www.youtube.com/watch?v=${trailer.key}`}
               target="_blank"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white transition-all"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-background-card hover:bg-background-glass border border-default rounded-lg text-primary transition-all"
             >
               <Play className="w-5 h-5" />
               Watch Trailer
-            </Link>
+            </a>
           )}
 
           <WatchlistButton

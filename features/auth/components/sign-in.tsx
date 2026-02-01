@@ -19,50 +19,16 @@ const SignInCard = ({ onSwitchToSignup, onSuccess }: SignInCardProps) => {
     showPassword,
     setShowPassword,
     isLoading,
-    isSuccess,
     handleSubmit,
   } = useSignIn({ onSuccess });
-
-  if (isSuccess) {
-    return (
-      <div className="p-8">
-        <div className="text-center space-y-4">
-          <div className="w-16 h-16 mx-auto bg-green-500/10 rounded-full flex items-center justify-center">
-            <svg
-              className="w-8 h-8 text-green-400"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M5 13l4 4L19 7"
-              />
-            </svg>
-          </div>
-          <div>
-            <h2 className="text-xl font-semibold text-white mb-2">
-              Welcome back!
-            </h2>
-            <p className="text-white/70 text-sm">
-              You&apos;ve been signed in successfully
-            </p>
-            <p className="text-white/50 text-xs mt-3">
-              The page will refresh in a moment
-            </p>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="p-6">
       <div className="text-center mb-6">
-        <h2 className="text-xl font-semibold text-white mb-1">Welcome Back</h2>
-        <p className="text-white/50 text-xs">Continue your journey</p>
+        <h2 className="text-xl font-semibold text-primary mb-1">
+          Welcome Back
+        </h2>
+        <p className="text-muted text-xs">Continue your journey</p>
       </div>
 
       <SocialButtons />
@@ -92,7 +58,7 @@ const SignInCard = ({ onSwitchToSignup, onSuccess }: SignInCardProps) => {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="text-white/30 hover:text-white/50 transition-colors"
+              className="text-muted hover:text-secondary transition-colors"
             >
               {showPassword ? (
                 <EyeOff className="w-4 h-4" />
@@ -106,7 +72,7 @@ const SignInCard = ({ onSwitchToSignup, onSuccess }: SignInCardProps) => {
         <div className="text-right">
           <button
             type="button"
-            className="text-xs text-white/50 hover:text-white/70 transition-colors"
+            className="text-xs text-muted hover:text-secondary transition-colors"
           >
             Forgot?
           </button>
@@ -118,10 +84,10 @@ const SignInCard = ({ onSwitchToSignup, onSuccess }: SignInCardProps) => {
       </form>
 
       <div className="mt-4 text-center text-xs">
-        <span className="text-white/50">Don&apos;t have an account? </span>
+        <span className="text-muted">Don&apos;t have an account? </span>
         <button
           onClick={onSwitchToSignup}
-          className="text-white/90 font-medium hover:underline"
+          className="text-primary font-medium hover:underline"
         >
           Sign up
         </button>

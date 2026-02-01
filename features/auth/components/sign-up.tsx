@@ -30,16 +30,16 @@ const SignupCard = ({ onSwitchToSignin }: SignupCardProps) => {
             <Mail className="w-8 h-8 text-green-400" />
           </div>
           <div>
-            <h2 className="text-xl font-semibold text-white mb-2">
+            <h2 className="text-xl font-semibold text-primary mb-2">
               Check your email!
             </h2>
-            <p className="text-white/70 text-sm leading-relaxed">
+            <p className="text-secondary text-sm leading-relaxed">
               We&apos;ve sent a confirmation link to
-              <span className="block mt-1 text-white/90 font-medium">
+              <span className="block mt-1 text-primary font-medium">
                 {formData.email}
               </span>
             </p>
-            <p className="text-white/50 text-xs mt-3">
+            <p className="text-muted text-xs mt-3">
               Click the link in the email to verify your account
             </p>
           </div>
@@ -51,10 +51,10 @@ const SignupCard = ({ onSwitchToSignin }: SignupCardProps) => {
   return (
     <div className="p-6">
       <div className="text-center mb-6">
-        <h2 className="text-xl font-semibold text-white mb-1">
+        <h2 className="text-xl font-semibold text-primary mb-1">
           Create Account
         </h2>
-        <p className="text-white/50 text-xs">Join and discover</p>
+        <p className="text-muted text-xs">Join and discover</p>
       </div>
 
       <SocialButtons />
@@ -95,7 +95,7 @@ const SignupCard = ({ onSwitchToSignin }: SignupCardProps) => {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="text-white/30 hover:text-white/50 transition-colors"
+              className="text-muted hover:text-secondary transition-colors"
             >
               {showPassword ? (
                 <EyeOff className="w-4 h-4" />
@@ -112,10 +112,10 @@ const SignupCard = ({ onSwitchToSignin }: SignupCardProps) => {
       </form>
 
       <div className="mt-4 text-center text-xs">
-        <span className="text-white/50">Already have an account? </span>
+        <span className="text-muted">Already have an account? </span>
         <button
           onClick={onSwitchToSignin}
-          className="text-white/90 font-medium hover:underline"
+          className="text-primary font-medium hover:underline"
         >
           Sign in
         </button>

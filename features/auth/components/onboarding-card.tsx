@@ -28,12 +28,12 @@ const OnboardingCard = ({ onComplete }: OnboardingCardProps) => {
   return (
     <div className="p-6 max-h-[80vh] overflow-y-auto">
       <div className="text-center mb-6">
-        <h2 className="text-xl font-semibold text-white mb-1">
+        <h2 className="text-xl font-semibold text-primary mb-1">
           {step === "movie"
             ? "Pick Your Favorite Movie Genres"
             : "Pick Your Favorite TV Genres"}
         </h2>
-        <p className="text-white/50 text-xs">
+        <p className="text-muted text-xs">
           {step === "movie"
             ? "Select at least 3 genres you love"
             : "Select at least 3 genres you enjoy"}
@@ -41,12 +41,12 @@ const OnboardingCard = ({ onComplete }: OnboardingCardProps) => {
         <div className="flex gap-2 justify-center mt-3">
           <div
             className={`h-1.5 w-8 rounded-full ${
-              step === "movie" ? "bg-white/80" : "bg-white/20"
+              step === "movie" ? "bg-accent" : "bg-border"
             }`}
           />
           <div
             className={`h-1.5 w-8 rounded-full ${
-              step === "tv" ? "bg-white/80" : "bg-white/20"
+              step === "tv" ? "bg-accent" : "bg-border"
             }`}
           />
         </div>
@@ -68,8 +68,8 @@ const OnboardingCard = ({ onComplete }: OnboardingCardProps) => {
               }
               className={`px-3 py-2 rounded-lg text-sm transition-all border ${
                 isSelected
-                  ? "bg-white/20 border-white/40 text-white"
-                  : "bg-white/5 border-white/10 text-white/70 hover:bg-white/10"
+                  ? "bg-accent/20 border-accent text-primary font-medium"
+                  : "bg-muted-background border-default text-secondary hover:bg-background-card"
               }`}
             >
               <span className="flex items-center justify-center gap-1.5">
@@ -102,12 +102,12 @@ const OnboardingCard = ({ onComplete }: OnboardingCardProps) => {
       )}
 
       {step === "movie" && movieGenres.length < 3 && (
-        <p className="text-white/40 text-xs text-center mt-2">
+        <p className="text-muted text-xs text-center mt-2">
           Select {3 - movieGenres.length} more to continue
         </p>
       )}
       {step === "tv" && tvGenres.length < 3 && (
-        <p className="text-white/40 text-xs text-center mt-2">
+        <p className="text-muted text-xs text-center mt-2">
           Select {3 - tvGenres.length} more to continue
         </p>
       )}

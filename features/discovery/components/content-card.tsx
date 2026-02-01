@@ -22,7 +22,7 @@ export const ContentCard = ({
 }: ContentCardProps) => {
   return (
     <div className="group cursor-pointer" onClick={onClick}>
-      <div className="aspect-3/4 bg-white/5 rounded-md relative overflow-hidden border border-white/10 hover:border-white/20 transition-all hover:scale-[1.02]">
+      <div className="aspect-3/4 bg-card rounded-md relative overflow-hidden border border-default hover:border-hover transition-all hover:scale-[1.02]">
         <Image
           width={400}
           height={400}
@@ -34,9 +34,9 @@ export const ContentCard = ({
         {isRemoveWatchList && removeWatchList && (
           <button
             onClick={removeWatchList}
-            className="absolute top-2 right-2 p-2 bg-black/80 hover:bg-red-600 rounded-full transition-all opacity-0 group-hover:opacity-100 z-10"
+            className="absolute top-2 right-2 p-2 bg-background/90 hover:bg-red-600 rounded-full transition-all opacity-0 group-hover:opacity-100 z-10"
           >
-            <X className="w-4 h-4 text-white" />
+            <X className="w-4 h-4 text-primary" />
           </button>
         )}
       </div>
@@ -46,7 +46,7 @@ export const ContentCard = ({
           {title}
         </h3>
         {(year || rating) && (
-          <p className="text-xs text-white/50">
+          <p className="text-xs text-muted-foreground">
             {year && <span>{year}</span>}
             {year && rating && <span> • </span>}
             {rating && <span>⭐ {rating}</span>}

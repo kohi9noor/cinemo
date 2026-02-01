@@ -26,7 +26,7 @@ export const DetailPage = ({ id, mediaType }: DetailPageProps) => {
   if (!details) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p className="text-white/50">Content not found</p>
+        <p className="text-muted">Content not found</p>
       </div>
     );
   }
@@ -34,6 +34,8 @@ export const DetailPage = ({ id, mediaType }: DetailPageProps) => {
   const trailer = videos.find(
     (v) => v.type === "Trailer" && v.site === "YouTube",
   );
+
+  console.log(trailer);
 
   const director = credits?.crew.find((c) => c.job === "Director");
   const topCast = credits?.cast.slice(0, 10) || [];

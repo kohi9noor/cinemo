@@ -34,9 +34,9 @@ export const WatchlistButton = ({
     return (
       <button
         disabled
-        className="flex items-center gap-2 px-4 py-2 text-sm bg-white/5 border border-white/10 rounded-lg text-white/40"
+        className="flex items-center gap-2 px-4 py-2 text-sm bg-muted-background border border-default rounded-lg text-muted"
       >
-        <div className="w-4 h-4 border-2 border-white/20 border-t-white/40 rounded-full animate-spin" />
+        <div className="w-4 h-4 border-2 border-border border-t-border-hover rounded-full animate-spin" />
       </button>
     );
   }
@@ -47,12 +47,12 @@ export const WatchlistButton = ({
       disabled={isLoading}
       className={`flex items-center gap-2 px-4 py-2 text-sm border rounded-lg transition-all ${
         isInWatchlist
-          ? "bg-white/20 border-white/40 text-white hover:bg-white/25"
-          : "bg-white/5 border-white/10 text-white/70 hover:bg-white/10 hover:border-white/20"
+          ? "bg-accent/20 border-accent text-primary hover:bg-accent/30"
+          : "bg-muted-background border-default text-secondary hover:bg-background-card hover:border-hover"
       } disabled:opacity-50 disabled:cursor-not-allowed`}
     >
       {isLoading ? (
-        <div className="w-4 h-4 border-2 border-white/20 border-t-white/80 rounded-full animate-spin" />
+        <div className="w-4 h-4 border-2 border-border border-t-accent rounded-full animate-spin" />
       ) : isInWatchlist ? (
         <>
           <BookmarkCheck className="w-4 h-4" />

@@ -10,7 +10,7 @@ export const PosterCard = ({ details }: PosterCardProps) => {
   const title = "title" in details ? details.title : details.name;
 
   return (
-    <div className="aspect-2/3 relative rounded-lg overflow-hidden border border-white/10">
+    <div className="aspect-2/3 relative rounded-lg overflow-hidden border border-default">
       <Image
         src={getPosterUrl(details.poster_path)}
         alt={title}

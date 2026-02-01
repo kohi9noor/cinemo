@@ -15,7 +15,7 @@ export const WatchlistGrid = () => {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center py-20">
-        <div className="w-12 h-12 border-4 border-white/20 border-t-white/80 rounded-full animate-spin" />
+        <div className="w-12 h-12 border-4 border-border border-t-accent rounded-full animate-spin" />
       </div>
     );
   }
@@ -26,10 +26,10 @@ export const WatchlistGrid = () => {
         <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-4">
           <span className="text-4xl">📺</span>
         </div>
-        <h3 className="text-white text-xl font-semibold mb-2">
+        <h3 className="text-primary text-xl font-semibold mb-2">
           Your watchlist is empty
         </h3>
-        <p className="text-white/60 text-sm">
+        <p className="text-muted text-sm">
           Start adding movies and TV shows to watch later
         </p>
       </div>

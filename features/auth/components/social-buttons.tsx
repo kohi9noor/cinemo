@@ -1,10 +1,6 @@
-import { Github } from "lucide-react";
 import { Button } from "./button";
-
-interface SocialButtonsProps {
-  onGoogleClick?: () => void;
-  onGithubClick?: () => void;
-}
+import { supabase } from "@/lib/supabase";
+import { toast } from "sonner";
 
 const GoogleIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24">
@@ -27,30 +23,29 @@ const GoogleIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-export const SocialButtons = ({
-  onGoogleClick,
-  onGithubClick,
-}: SocialButtonsProps) => {
+export const SocialButtons = () => {
+  const handleGoogleSignIn = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`,
+      },
+    });
+
+    if (error) {
+      toast.error(error.message);
+    }
+  };
+
   return (
-    <div className="space-y-2">
-      <Button
-        variant="primary"
-        icon={GoogleIcon}
-        fullWidth
-        onClick={onGoogleClick}
-        type="button"
-      >
-        Google
-      </Button>
-      <Button
-        variant="secondary"
-        icon={Github}
-        fullWidth
-        onClick={onGithubClick}
-        type="button"
-      >
-        GitHub
-      </Button>
-    </div>
+    <Button
+      variant="primary"
+      icon={GoogleIcon}
+      fullWidth
+      onClick={handleGoogleSignIn}
+      type="button"
+    >
+      Continue with Google
+    </Button>
   );
 };

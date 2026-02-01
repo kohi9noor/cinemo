@@ -22,9 +22,10 @@ export const Button = ({
 
   const variantStyles = {
     primary:
-      "bg-white/10 text-white border border-white/20 hover:bg-white/[0.15] hover:border-white/30",
-    secondary: "bg-white/5 text-white border border-white/10 hover:bg-white/10",
-    ghost: "text-white/70 hover:text-white hover:bg-white/5",
+      "bg-background-card text-primary border border-default hover:bg-background-glass hover:border-hover",
+    secondary:
+      "bg-muted-background text-primary border border-default hover:bg-background-card",
+    ghost: "text-secondary hover:text-primary hover:bg-muted-background",
   };
 
   return (

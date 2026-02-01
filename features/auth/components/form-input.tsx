@@ -26,15 +26,15 @@ export const FormInput = ({
 }: FormInputProps) => {
   return (
     <div className="space-y-1">
-      <label className="text-xs font-medium text-white/70">{label}</label>
+      <label className="text-xs font-medium text-secondary">{label}</label>
       <div className="relative">
-        <Icon className="absolute left-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+        <Icon className="absolute left-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted" />
         <input
           type={type}
           placeholder={placeholder}
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="w-full pl-9 pr-3 py-2 text-sm bg-white/5 border border-white/10 rounded-lg text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 focus:border-transparent transition-all"
+          className="w-full pl-9 pr-3 py-2 text-sm bg-muted-background border border-default rounded-lg text-primary placeholder:text-muted focus:outline-none focus:ring-1 focus:ring-border-focus focus:border-transparent transition-all"
           required={required}
         />
         {rightIcon && (
@@ -43,7 +43,7 @@ export const FormInput = ({
           </div>
         )}
       </div>
-      {helperText && <p className="text-[10px] text-white/30">{helperText}</p>}
+      {helperText && <p className="text-[10px] text-muted">{helperText}</p>}
     </div>
   );
 };
