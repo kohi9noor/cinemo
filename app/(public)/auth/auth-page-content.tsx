@@ -33,7 +33,7 @@ export default function AuthPageContent() {
           </h1>
           <p className="text-muted">Sign in to continue</p>
         </div>
-        <AuthModel isOpen={true} onClose={() => router.push("/")} />
+        <AuthModel isOpen={true} onClose={() => (window.location.href = "/")} />
       </div>
     </div>
   );

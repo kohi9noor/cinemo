@@ -20,7 +20,7 @@ export const DetailPage = ({ id, mediaType }: DetailPageProps) => {
   );
 
   if (isLoading) {
-    return <LazyLoader />;
+    return <LazyLoader size="lg" fullScreen />;
   }
 
   if (!details) {

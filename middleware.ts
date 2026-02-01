@@ -33,14 +33,16 @@ export async function middleware(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  // Protect private routes
-  if (request.nextUrl.pathname.startsWith("/profile") && !user) {
+  if (
+    (request.nextUrl.pathname.startsWith("/profile") ||
+      request.nextUrl.pathname.startsWith("/detail")) &&
+    !user
+  ) {
     const redirectUrl = new URL("/auth", request.url);
     redirectUrl.searchParams.set("redirect", request.nextUrl.pathname);
     return NextResponse.redirect(redirectUrl);
   }
 
-  // Redirect to home if already authenticated and trying to access auth page
   if (request.nextUrl.pathname === "/auth" && user) {
     const redirect = request.nextUrl.searchParams.get("redirect");
     return NextResponse.redirect(new URL(redirect || "/", request.url));

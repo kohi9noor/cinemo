@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useWatchlistData } from "../hooks/use-watchlist-data";
 import { WatchlistCard } from "./watchlist-card";
+import LazyLoader from "@/components/ui/lazy-loader";
 
 export const WatchlistGrid = () => {
   const router = useRouter();
@@ -13,11 +14,7 @@ export const WatchlistGrid = () => {
   };
 
   if (isLoading) {
-    return (
-      <div className="flex justify-center items-center py-20">
-        <div className="w-12 h-12 border-4 border-border border-t-accent rounded-full animate-spin" />
-      </div>
-    );
+    return <LazyLoader size="lg" />;
   }
 
   if (watchlist.length === 0) {

@@ -7,6 +7,7 @@ import { SearchBar } from "./search-bar";
 import { FiltersPanel } from "./filters-panel";
 import { useDiscoveryContent } from "../hooks/use-discovery-content";
 import type { ContentItem, MediaType } from "../types/tmdb";
+import LazyLoader from "@/components/ui/lazy-loader";
 
 export const DiscoverySection = () => {
   const router = useRouter();
@@ -56,11 +57,7 @@ export const DiscoverySection = () => {
 
       <ContentGrid items={content} onItemClick={handleItemClick} />
 
-      {isLoading && (
-        <div className="flex justify-center items-center py-8">
-          <div className="w-8 h-8 border-4 border-white/20 border-t-white/80 rounded-full animate-spin" />
-        </div>
-      )}
+      {isLoading && <LazyLoader />}
 
       {!hasMore && content.length > 0 && (
         <p className="text-center text-white/40 text-sm py-8">

@@ -17,7 +17,7 @@ export const Header = () => {
         </div>
 
         {isLoading ? (
-          <LazyLoader />
+          <LazyLoader size="sm" />
         ) : (
           isAuth &&
           profile && (
