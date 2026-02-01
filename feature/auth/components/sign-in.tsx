@@ -1,13 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 import { FormInput } from "./form-input";
 import { Button } from "./button";
 import { SocialButtons } from "./social-buttons";
 import { FormDivider } from "./form-divider";
-import { supabase } from "@/lib/supabase";
-import { toast } from "sonner";
+import { useSignIn } from "../hooks/use-sign-in";
 
 interface SignInCardProps {
   onSwitchToSignup?: () => void;
@@ -15,35 +13,50 @@ interface SignInCardProps {
 }
 
 const SignInCard = ({ onSwitchToSignup, onSuccess }: SignInCardProps) => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  const {
+    formData,
+    setFormData,
+    showPassword,
+    setShowPassword,
+    isLoading,
+    isSuccess,
+    handleSubmit,
+  } = useSignIn({ onSuccess });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-    try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email: formData.email,
-        password: formData.password,
-      });
-
-      if (error) {
-        toast.error(error.message);
-      } else if (data.session) {
-        toast.success("Signed in successfully");
-        onSuccess?.();
-      }
-    } catch {
-      toast.error("Something went wrong");
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  if (isSuccess) {
+    return (
+      <div className="p-8">
+        <div className="text-center space-y-4">
+          <div className="w-16 h-16 mx-auto bg-green-500/10 rounded-full flex items-center justify-center">
+            <svg
+              className="w-8 h-8 text-green-400"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+          </div>
+          <div>
+            <h2 className="text-xl font-semibold text-white mb-2">
+              Welcome back!
+            </h2>
+            <p className="text-white/70 text-sm">
+              You&apos;ve been signed in successfully
+            </p>
+            <p className="text-white/50 text-xs mt-3">
+              The page will refresh in a moment
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="p-6">

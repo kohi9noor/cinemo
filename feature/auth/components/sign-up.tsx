@@ -1,55 +1,26 @@
 "use client";
 
-import { useState } from "react";
 import { Mail, Lock, User, Eye, EyeOff } from "lucide-react";
 import { FormInput } from "./form-input";
 import { Button } from "./button";
 import { SocialButtons } from "./social-buttons";
 import { FormDivider } from "./form-divider";
-import { supabase } from "@/lib/supabase";
-import { toast } from "sonner";
+import { useSignUp } from "../hooks/use-sign-up";
 
 interface SignupCardProps {
   onSwitchToSignin?: () => void;
 }
 
 const SignupCard = ({ onSwitchToSignin }: SignupCardProps) => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-    try {
-      const { error } = await supabase.auth.signUp({
-        email: formData.email,
-        password: formData.password,
-        options: {
-          data: {
-            full_name: formData.name,
-          },
-        },
-      });
-
-      if (error) {
-        toast.error(error.message);
-      } else {
-        setIsSuccess(true);
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error("Something went wrong");
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const {
+    formData,
+    setFormData,
+    showPassword,
+    setShowPassword,
+    isLoading,
+    isSuccess,
+    handleSubmit,
+  } = useSignUp();
 
   if (isSuccess) {
     return (
