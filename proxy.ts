@@ -22,7 +22,13 @@ export async function proxy(request: NextRequest) {
             request,
           });
           cookiesToSet.forEach(({ name, value, options }) =>
-            supabaseResponse.cookies.set(name, value, options),
+            supabaseResponse.cookies.set(name, value, {
+              ...options,
+              maxAge: options?.maxAge ?? 60 * 60 * 24 * 365, // 1 year default
+              sameSite:
+                (options?.sameSite as "lax" | "strict" | "none") ?? "lax",
+              secure: process.env.NODE_ENV === "production",
+            }),
           );
         },
       },
@@ -43,7 +49,11 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(redirectUrl);
   }
 
-  if (request.nextUrl.pathname === "/auth" && user) {
+  if (
+    request.nextUrl.pathname.startsWith("/auth") &&
+    user &&
+    !request.nextUrl.pathname.startsWith("/auth/callback")
+  ) {
     const redirect = request.nextUrl.searchParams.get("redirect");
     return NextResponse.redirect(new URL(redirect || "/", request.url));
   }
