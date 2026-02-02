@@ -1,8 +1,9 @@
 "use client";
 
-import { Check } from "lucide-react";
-import { Button } from "./button";
 import { useOnboarding } from "../hooks/use-onboarding";
+import { OnboardingHeader } from "./onboarding/onboarding-header";
+import { GenreGrid } from "./onboarding/genre-grid";
+import { OnboardingActions } from "./onboarding/onboarding-actions";
 
 interface OnboardingCardProps {
   onComplete: (preferences: {
@@ -25,92 +26,27 @@ const OnboardingCard = ({ onComplete }: OnboardingCardProps) => {
     TV_GENRES,
   } = useOnboarding(onComplete);
 
+  const currentGenres = step === "movie" ? MOVIE_GENRES : TV_GENRES;
+  const selectedGenres = step === "movie" ? movieGenres : tvGenres;
+  const toggleGenre = step === "movie" ? toggleMovieGenre : toggleTvGenre;
+
   return (
     <div className="p-6 max-h-[80vh] overflow-y-auto">
-      <div className="text-center mb-6">
-        <h2 className="text-xl font-semibold text-primary mb-1">
-          {step === "movie"
-            ? "Pick Your Favorite Movie Genres"
-            : "Pick Your Favorite TV Genres"}
-        </h2>
-        <p className="text-muted text-xs">
-          {step === "movie"
-            ? "Select at least 3 genres you love"
-            : "Select at least 3 genres you enjoy"}
-        </p>
-        <div className="flex gap-2 justify-center mt-3">
-          <div
-            className={`h-1.5 w-8 rounded-full ${
-              step === "movie" ? "bg-accent" : "bg-border"
-            }`}
-          />
-          <div
-            className={`h-1.5 w-8 rounded-full ${
-              step === "tv" ? "bg-accent" : "bg-border"
-            }`}
-          />
-        </div>
-      </div>
+      <OnboardingHeader step={step} />
 
-      <div className="grid grid-cols-2 gap-2 mb-6">
-        {(step === "movie" ? MOVIE_GENRES : TV_GENRES).map((genre) => {
-          const isSelected =
-            step === "movie"
-              ? movieGenres.includes(genre)
-              : tvGenres.includes(genre);
-          return (
-            <button
-              key={genre}
-              onClick={() =>
-                step === "movie"
-                  ? toggleMovieGenre(genre)
-                  : toggleTvGenre(genre)
-              }
-              className={`px-3 py-2 rounded-lg text-sm transition-all border ${
-                isSelected
-                  ? "bg-accent/20 border-accent text-primary font-medium"
-                  : "bg-muted-background border-default text-secondary hover:bg-background-card"
-              }`}
-            >
-              <span className="flex items-center justify-center gap-1.5">
-                {isSelected && <Check className="w-3 h-3" />}
-                {genre}
-              </span>
-            </button>
-          );
-        })}
-      </div>
+      <GenreGrid
+        genres={currentGenres}
+        selectedGenres={selectedGenres}
+        onToggle={toggleGenre}
+      />
 
-      {step === "movie" ? (
-        <Button
-          variant="primary"
-          fullWidth
-          onClick={handleNext}
-          disabled={movieGenres.length < 3}
-        >
-          Continue to TV Genres
-        </Button>
-      ) : (
-        <Button
-          variant="primary"
-          fullWidth
-          onClick={handleComplete}
-          disabled={tvGenres.length < 3 || isLoading}
-        >
-          {isLoading ? "Saving preferences..." : "Complete Setup"}
-        </Button>
-      )}
-
-      {step === "movie" && movieGenres.length < 3 && (
-        <p className="text-muted text-xs text-center mt-2">
-          Select {3 - movieGenres.length} more to continue
-        </p>
-      )}
-      {step === "tv" && tvGenres.length < 3 && (
-        <p className="text-muted text-xs text-center mt-2">
-          Select {3 - tvGenres.length} more to continue
-        </p>
-      )}
+      <OnboardingActions
+        step={step}
+        selectedCount={selectedGenres.length}
+        isLoading={isLoading}
+        onNext={handleNext}
+        onComplete={handleComplete}
+      />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SignupCard from "./sign-up";
 import SignInCard from "./sign-in";
 import AuthCardLayout from "./card-layout";
@@ -17,6 +17,20 @@ const AuthModel = ({ isOpen, onClose }: AuthModelProps = {}) => {
 
   const shouldShow = isOpen !== undefined ? isOpen : showModel;
   const handleClose = onClose || hideModel;
+
+  useEffect(() => {
+    if (isOpen !== undefined && isOpen) {
+      document.body.style.overflow = "hidden";
+    } else if (isOpen !== undefined && !isOpen) {
+      document.body.style.overflow = "unset";
+    }
+
+    return () => {
+      if (isOpen !== undefined) {
+        document.body.style.overflow = "unset";
+      }
+    };
+  }, [isOpen]);
 
   return (
     shouldShow && (

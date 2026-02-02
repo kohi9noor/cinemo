@@ -73,10 +73,12 @@ export const useOnboarding = (
 
   const handleComplete = async () => {
     setIsLoading(true);
+
     await onComplete({
       favoriteMovieGenres: movieGenres,
       favoriteTvGenres: tvGenres,
     });
+
     setIsLoading(false);
   };
 

@@ -19,6 +19,11 @@ export const transformTMDBContent = (content: TMDBContent): ContentItem => {
   };
 };
 
+export const getProfileUrl = (path: string | null) => {
+  if (!path) return "/placeholder-avatar.jpg";
+  return `https://image.tmdb.org/t/p/w200${path}`;
+};
+
 export const getPosterUrl = (
   path: string | null,
   size: "w500" | "original" = "w500",

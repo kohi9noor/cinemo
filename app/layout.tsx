@@ -36,10 +36,9 @@ export default function RootLayout({
         <Header />
         {children}
 
-        <Toaster richColors position="top-center" theme="dark" expand={true} />
+        <Toaster richColors position="top-center" theme="light" expand={true} />
         <AuthModel />
         <OnboardingModal />
-        <DebugLogout />
       </body>
     </html>
   );

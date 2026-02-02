@@ -3,7 +3,11 @@
 import { useOnboardingStatus } from "../hooks/use-onboarding-status";
 import OnboardingCard from "./onboarding-card";
 import AuthCardLayout from "./card-layout";
-import { updateUserPreferences, createUserProfile } from "../actions/profile";
+import {
+  updateUserPreferences,
+  createUserProfile,
+  getUserProfile,
+} from "../actions/profile";
 import { toast } from "sonner";
 
 const OnboardingModal = () => {
@@ -16,9 +20,7 @@ const OnboardingModal = () => {
     if (!userId) return;
 
     try {
-      const { data: existingProfile } = await import("../actions/profile").then(
-        (mod) => mod.getUserProfile(userId),
-      );
+      const { data: existingProfile } = await getUserProfile(userId);
 
       if (!existingProfile) {
         await createUserProfile(userId);

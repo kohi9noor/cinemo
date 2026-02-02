@@ -20,7 +20,6 @@ export async function addToWatchlist(params: AddToWatchlistParams) {
     const supabase = await createClient();
     const {
       data: { user },
-      error: userError,
     } = await supabase.auth.getUser();
     if (!user) {
       return err(new Error("User not authenticated"));

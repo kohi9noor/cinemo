@@ -51,7 +51,6 @@ export interface TMDBTVDetail {
   networks: { id: number; name: string; logo_path: string | null }[];
 }
 
-// Cast & Crew
 export interface CastMember {
   id: number;
   name: string;
@@ -73,7 +72,6 @@ export interface Credits {
   crew: CrewMember[];
 }
 
-// Videos
 export interface Video {
   id: string;
   key: string;

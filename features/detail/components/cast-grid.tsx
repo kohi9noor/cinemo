@@ -1,14 +1,10 @@
 import Image from "next/image";
 import type { CastMember } from "../types/tmdb";
+import { getProfileUrl } from "@/features/discovery/utils/tmdb-helpers";
 
 interface CastGridProps {
   cast: CastMember[];
 }
-
-const getProfileUrl = (path: string | null) => {
-  if (!path) return "/placeholder-avatar.jpg";
-  return `https://image.tmdb.org/t/p/w200${path}`;
-};
 
 export const CastGrid = ({ cast }: CastGridProps) => {
   if (cast.length === 0) return null;
