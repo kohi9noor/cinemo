@@ -6,8 +6,8 @@ const useScrollTrigger = () => {
   const [isAuthenticated, setAuthenticated] = useState<boolean | null>(false);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setAuthenticated(!!session);
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      setAuthenticated(!!user);
     });
 
     const { data: authListener } = supabase.auth.onAuthStateChange(
