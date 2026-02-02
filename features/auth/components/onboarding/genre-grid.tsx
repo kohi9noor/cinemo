@@ -1,7 +1,7 @@
 import { GenreButton } from "./genre-button";
 
 interface GenreGridProps {
-  genres: string[];
+  genres: readonly string[];
   selectedGenres: string[];
   onToggle: (genre: string) => void;
 }

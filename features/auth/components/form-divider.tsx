@@ -1,5 +1,3 @@
-import React from "react";
-
 export const FormDivider = ({ text = "or email" }: { text?: string }) => {
   return (
     <div className="relative my-4">
