@@ -8,7 +8,7 @@ Cinemo is a Next.js app where you can discover movies and TV shows, keep a watch
 
 ## Demo
 
-[link](https://drive.google.com/file/d/19UKJr0cUxer_mLZ5VNsJ01mPMm6SHIBt/view?usp=sharing)
+[link](https://drive.google.com/file/d/1_h_SpKT9xIKrVil8JZU1v02YE7RwK01a/view?usp=sharing)
 
 ## The Stack
 
