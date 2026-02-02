@@ -129,7 +129,7 @@ cd cinemo
 npm install
 ```
 
-3. Set up your environment variables. Create a `.env` file:
+3. Set up your environment variables. Create a `.env.local` file:
 
 ```bash
 # Supabase
@@ -205,7 +205,7 @@ Check `lib/color-utils.ts` - it's a simple hash function that picks from a palet
 
 ### Lazy Loading & Infinite Scroll
 
-Discovery page has infinite scroll. Scroll to the bottom, it loads more content automatically. Uses Intersection Observer under the hood. The `useInfiniteScroll` hook handles the logic.
+The discovery page has infinite scroll. Scroll to the bottom, and it loads more content automatically. Uses Intersection Observer under the hood. The `useInfiniteScroll` hook handles the logic.
 
 ### Smart Loading States
 
@@ -221,17 +221,9 @@ Search input debounces for 500ms. You're not hitting the API on every keystroke.
 
 ## Things to Know
 
-### Environment Variables
-
-Don't commit `.env.local`. It's in `.gitignore` for a reason. Your API keys are secrets, treat them that way.
-
-### Build Warnings
-
-You might see a warning about middleware being deprecated in favor of proxy. It's a Next.js 16 thing. The app works fine, they're just changing terminology.
-
 ### Supabase Auth
 
-I am using using Supabase's server-side auth with cookies. The `lib/supabase/server.ts` file handles creating the client with the right cookie setup. Don't use the regular client for auth stuff on the server.
+I am using Supabase's server-side auth with cookies. The `lib/supabase/server.ts` file handles creating the client with the right cookie setup. Don't use the regular client for auth stuff on the server.
 
 ## What's Next?
 
