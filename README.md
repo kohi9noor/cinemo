@@ -12,7 +12,7 @@ Cinemo is a Next.js app where you can discover movies and TV shows, keep a watch
 - **TypeScript** - For type safety
 - **Tailwind CSS v4** - For styling
 - **Supabase** - Auth + Database hosting made easy
-- **Drizzle ORM** - Type-safe database queries that don't make you want to cry
+- **Drizzle ORM** - Type-safe database queries
 - **TMDB API** - Where all the movie/TV data comes from
 - **Sonner** - Toast notifications
 
@@ -119,7 +119,7 @@ The API calls are wrapped in server actions. Data gets cached by Next.js automat
 1. Clone this thing:
 
 ```bash
-git clone <your-repo>
+git clone https://github.com/kohi9noor/cinemo.git
 cd cinemo
 ```
 
