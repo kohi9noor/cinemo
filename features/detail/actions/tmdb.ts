@@ -8,6 +8,7 @@ import type {
   VideosResponse,
 } from "../types/tmdb";
 import { tmdbFetch } from "@/lib/tmdb";
+
 export async function getMovieDetails(movieId: number) {
   try {
     const data = await tmdbFetch<TMDBMovieDetail>(`/movie/${movieId}`);

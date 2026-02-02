@@ -24,8 +24,8 @@ const useScrollTrigger = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      const threshold = 400;
 
+      const threshold = 400;
       if (scrollY > threshold) {
         if (!isAuthenticated) {
           setShowModel(true);

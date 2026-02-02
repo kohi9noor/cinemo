@@ -75,7 +75,7 @@ export const useWatchlist = ({
           toast.success("Added to watchlist");
         }
       }
-    } catch (error) {
+    } catch {
       toast.error("Something went wrong");
     } finally {
       setIsLoading(false);

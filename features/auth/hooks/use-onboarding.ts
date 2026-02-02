@@ -1,46 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
-const MOVIE_GENRES = [
-  "Action",
-  "Adventure",
-  "Animation",
-  "Comedy",
-  "Crime",
-  "Documentary",
-  "Drama",
-  "Family",
-  "Fantasy",
-  "History",
-  "Horror",
-  "Music",
-  "Mystery",
-  "Romance",
-  "Science Fiction",
-  "Thriller",
-  "War",
-  "Western",
-];
-
-const TV_GENRES = [
-  "Action & Adventure",
-  "Animation",
-  "Comedy",
-  "Crime",
-  "Documentary",
-  "Drama",
-  "Family",
-  "Kids",
-  "Mystery",
-  "News",
-  "Reality",
-  "Sci-Fi & Fantasy",
-  "Soap",
-  "Talk",
-  "War & Politics",
-  "Western",
-];
+import { MOVIE_GENRES, TV_GENRES } from "../constants/genres";
 
 export const useOnboarding = (
   onComplete: (preferences: {
