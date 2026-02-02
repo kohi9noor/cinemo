@@ -6,6 +6,10 @@ Yeah, Movie App :)
 
 Cinemo is a Next.js app where you can discover movies and TV shows, keep a watchlist, and actually have a decent time browsing content. It pulls data from TMDB, handles auth with Supabase, and stores your preferences in a postgres database.
 
+## Demo 
+[link](https://drive.google.com/file/d/19UKJr0cUxer_mLZ5VNsJ01mPMm6SHIBt/view?usp=sharing)
+
+
 ## The Stack
 
 - **Next.js 16** - Fast And SSR
