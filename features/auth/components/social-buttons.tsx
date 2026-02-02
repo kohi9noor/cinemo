@@ -25,10 +25,13 @@ const GoogleIcon = ({ className }: { className?: string }) => (
 
 export const SocialButtons = () => {
   const handleGoogleSignIn = async () => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const redirect = searchParams.get("redirect") || "/";
+
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `${window.location.origin}/auth/callback`,
+        redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(redirect)}`,
       },
     });
 
